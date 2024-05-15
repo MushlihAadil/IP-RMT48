@@ -2,14 +2,14 @@
   "development": {
     "username": "postgres",
     "password": "postgres",
-    "database": "DB-Narnia_development",
+    "database": "DB-HarryPotter_development",
     "host": "localhost",
     "dialect": "postgres"
   },
   "test": {
     "username": "postgres",
     "password": "postgres",
-    "database": "DB-Narnia_testing",
+    "database": "DB-HarryPotter_testing",
     "host": "localhost",
     "dialect": "postgres"
   },

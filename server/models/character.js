@@ -18,7 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     nickname: DataTypes.STRING,
     hogwartsHouse: DataTypes.STRING,
     actor: DataTypes.STRING,
-    children: DataTypes.STRING,
+    children: {
+      type: DataTypes.STRING,
+      defaultValue: ['Have no children'],
+    },
     imageUrl: DataTypes.STRING,
     birthdate: DataTypes.STRING
   }, {

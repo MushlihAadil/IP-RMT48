@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       children: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       imageUrl: {
         type: Sequelize.STRING

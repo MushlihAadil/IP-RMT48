@@ -19,10 +19,10 @@ module.exports = {
       }
     });
 
-    // await queryInterface.bulkInsert('Books', data, {});
+    await queryInterface.bulkInsert('Books', data, {});
   },
 
   async down (queryInterface, Sequelize) {
-    // await queryInterface.bulkDelete('Books', null, {});
+    await queryInterface.bulkDelete('Books', null, {});
   }
 };

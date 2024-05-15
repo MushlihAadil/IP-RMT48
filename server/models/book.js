@@ -19,11 +19,19 @@ module.exports = (sequelize, DataTypes) => {
     releaseDate: DataTypes.STRING,
     imageUrl: DataTypes.STRING,
     description: DataTypes.STRING,
-    price: DataTypes.INTEGER,
+    price: {
+      type: DataTypes.INTEGER,
+      defaultValue: 100000,
+    },
     pages: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Book',
+    hooks : {
+      beforeCreate(book) {
+        book.price = `Rp. ${book.price}`
+      }
+    }
   });
   return Book;
 };
