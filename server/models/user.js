@@ -55,7 +55,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue: 'User'
     },
-    phoneNumber: DataTypes.STRING
+    phoneNumber: DataTypes.STRING,
+    profilePicture: {
+      type: DataTypes.STRING,
+      defaultValue: 'https://res.cloudinary.com/d3711111/image/upload/v1621069111/default-profile_p1j42o.png'
+    }
   }, {
     sequelize,
     modelName: 'User',
