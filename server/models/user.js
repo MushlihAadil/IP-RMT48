@@ -33,17 +33,17 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: { args: true, msg: 'Email is already Exists' },
       validate: {
-        isEmail: { args : true, message: 'Invalid Email format'},
-        notEmpty: {args : true, message: 'Email is required'},
-        notNull: {args : true, message: 'Email is required'},
+        isEmail: { args : true, msg: 'Invalid Email format'},
+        notNull: {args : true, msg: 'Email is required'},
+        notEmpty: {args : true, msg: 'Email is required'},
       }
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notEmpty: { msg: `Password cannot be empty` },
-        notNull: { msg: `Password cannot be empty`},
+        notNull: { args: true, msg: `Password cannot be empty` },
+        notEmpty: { args: true, msg: `Password cannot be empty`},
         passwordLength() {
           if (this.password.length < 8) {
             throw new Error('Password must be at least 8 characters');

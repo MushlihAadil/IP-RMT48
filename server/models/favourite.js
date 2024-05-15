@@ -38,11 +38,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     quantity: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notNull: { args: true, msg: 'Quantity is required' },
-        notEmpty: { args: true, msg: 'Quantity is required' }
-      }
+      defaultValue: 1
+    },
+    totalPrice: {
+      type: DataTypes.INTEGER
     }
   }, {
     sequelize,

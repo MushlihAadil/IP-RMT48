@@ -31,12 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     pages: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Book',
-    hooks : {
-      beforeCreate(book) {
-        book.price = `Rp. ${book.price}`
-      }
-    }
+    modelName: 'Book'
   });
   return Book;
 };

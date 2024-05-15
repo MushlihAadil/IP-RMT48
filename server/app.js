@@ -1,27 +1,25 @@
-if (process.env.NODE_ENV!== 'production') {
-    require('dotenv').config();
-}
-
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+    res.send('Selamat Datang, di Server Harry Potter API!');
+  });
 
 // Body Parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Router
+app.use(require('./routers/index'));
+
 // Cors Middleware
-app.use(cors())
+app.use(cors());
 
-app.get('/', (req, res) => {
-    res.send('Selamat Datang, di Server Harry Potter API!')
-  });
-  
+// Error Handler
+app.use(require('./middleware/errorHandlers'));
 
-app.listen(port, () => {
-    console.clear();
-    console.log(`Example app listening on port ${port}`)
+app.listen(PORT, () => {
+    console.log(`Example app listening on port ${PORT}`);
 });
-
-module.exports = app
