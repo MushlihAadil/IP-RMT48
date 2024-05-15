@@ -1,0 +1,16 @@
+[
+  {
+    "username": "admin",
+    "email": "admin@mail.com",
+    "password": "admin",
+    "role": "Admin",
+    "phoneNumber": "880-927-024"
+  },
+  {
+    "username": "aadil",
+    "email": "aadil@mail.com",
+    "password": "aadil",
+    "role": "User",
+    "phoneNumber": "770-123-571"
+  }
+]
