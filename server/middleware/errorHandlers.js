@@ -6,6 +6,8 @@ function errorHandler (err, req, res, next) {
         res.status(400).json({message: err.errors[0].message});
     } else if (err.name === 'LoginBadRequest') {
         res.status(400).json({message: `Username, Email or Password is required`});
+    } else if (err.name === 'PasswordRequired') {
+        res.status(400).json({message: `Password is required`});
     } else if (err.name === 'PasswordTooShort') {
         res.status(400).json({message: `Password must be at least 8 characters`});
     } else if (err.name === 'InvalidUserInput') {

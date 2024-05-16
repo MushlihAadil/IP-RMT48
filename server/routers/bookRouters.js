@@ -3,7 +3,7 @@ const router = express.Router();
 const MainController = require('../controllers/MainController');
 const authentication = require('../middleware/authentication');
 
-router.get('/', authentication, MainController.fetchBooks);
-router.get('/:id', authentication, MainController.fetchBookbyId)
+router.get('/', MainController.fetchBooks);
+router.get('/:id', MainController.fetchBookbyId)
 
 module.exports = router;

@@ -14,8 +14,11 @@ class UserController {
     static async register(req, res, next) {
         try {
             const { username, email, password, phoneNumber } = req.body;
+            if (!password) throw { name : 'PasswordRequired'}
+            if (password.length < 8) throw {name: 'PasswordTooShort'}
+
             const user = await User.create({username, email, password, phoneNumber});
-            
+
             res.status(201).json({
                 username: user.username,
                 email: user.email,
@@ -29,8 +32,7 @@ class UserController {
     static async login(req, res, next) {
         try {
             const { username, email, password } = req.body;
-            if (!email && !username || !password) throw {name: 'LoginBadRequest'}
-            if (password.length < 8) throw {name: 'PasswordTooShort'}
+            if (!email || !username && !password) throw {name: 'LoginBadRequest'}
 
             let user;
             if (email) {

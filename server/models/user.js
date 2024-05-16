@@ -42,13 +42,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull: { args: true, msg: `Password cannot be empty` },
-        notEmpty: { args: true, msg: `Password cannot be empty`},
-        passwordLength() {
-          if (this.password.length < 8) {
-            throw new Error('Password must be at least 8 characters');
-          }
-        }
+        notNull: { args: true, msg: `Password is required` },
+        notEmpty: { args: true, msg: `Password is required`},
       }
     },
     role: {
