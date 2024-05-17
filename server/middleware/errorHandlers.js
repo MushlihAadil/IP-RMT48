@@ -1,5 +1,5 @@
 function errorHandler (err, req, res, next) {
-
+    console.log(err, '<<<<<< ErrorHandlerrrr');
     if (err.name === 'SequelizeValidationError') {
         res.status(400).json({message: err.errors[0].message});
     } else if (err.name === 'SequelizeUniqueConstraintError') {
@@ -28,7 +28,6 @@ function errorHandler (err, req, res, next) {
         res.status(404).json({message: `Favourite you're looking for doesn't exist`});
     } else {
         res.status(500).json({message: `Internal Server Error`});
-        console.log(err);
     }
 }
 

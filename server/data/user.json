@@ -4,13 +4,15 @@
     "email": "admin@mail.com",
     "password": "adminadmin",
     "role": "Admin",
-    "phoneNumber": "880-927-024"
+    "phoneNumber": "880-927-024",
+    "profilePicture": "https://res.cloudinary.com/d3711111/image/upload/v1621069111/default-profile_p1j42o.png"
   },
   {
     "username": "aadil",
     "email": "aadil@mail.com",
     "password": "aadilaadil",
     "role": "User",
-    "phoneNumber": "770-123-571"
+    "phoneNumber": "770-123-571",
+    "profilePicture": "https://res.cloudinary.com/d3711111/image/upload/v1621069111/default-profile_p1j42o.png"
   }
 ]
