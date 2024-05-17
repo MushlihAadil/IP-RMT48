@@ -40,21 +40,52 @@ export const LoginPage = () => {
         }
     }
 
-    function loadGoogleButton() {
-        google.accounts.id.initialize({
-            client_id: "YOUR_GOOGLE_CLIENT_ID",
-            callback: handleCredentialResponse
+    //GOOGLE LOGIN
+    async function handleCredentialResponse(response) {
+        // console.log("Encoded JWT ID token: " + response.credential);
+        try {
+        const { data } = await axios({
+            method: "POST",
+            url: "http://localhost:3000" + `/google-login`,
+            headers: {
+            google_token: response.credential,
+            },
         });
-        google.accounts.id.renderButton(
+        
+        Swal.fire({
+            title: "Login Success!",
+            text: "Account Successfully Login!",
+            icon: "success"
+        });
+        
+        localStorage.access_token = data.access_token;
+        localStorage.email = data.email;
+        navigate("/");
+        } catch (err) {
+            console.log(err);
+            Swal.fire({
+                title: "Login Failed!",
+                text: err.response,
+                icon: "error",
+                confirmButtonText: "Ok"
+            });
+        }
+    }
+
+    function loadGoogleButton() {
+        window.google.accounts.id.initialize({
+            client_id: "416019115143-4oe8u57fomsbhsvaf2i4ttjad85b8voa.apps.googleusercontent.com",
+            callback: handleCredentialResponse,
+        });
+        window.google.accounts.id.renderButton(
             document.getElementById("buttonDiv"),
             { theme: "outline", size: "large" }  // customization attributes
         );
-        google.accounts.id.prompt(); // also display the One Tap dialog 
+        window.google.accounts.id.prompt(); // also display the One Tap dialog 
     }
 
     useEffect(() => {
         loadGoogleButton();
-        loadGithubButton();
       }, []);
       
     return (
@@ -95,8 +126,13 @@ export const LoginPage = () => {
                     </div>
                 </div>
             </form>
+            <div className="signIn-others">
+                <p> Or Sign In With</p>
+                <div id="buttonDiv"></div>
+            </div>
         </div>
-        <div id="buttonDiv"></div>
+        
+        
         </>
     )
 };

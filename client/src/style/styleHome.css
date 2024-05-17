@@ -1,0 +1,36 @@
+:root {
+    --primary-color: #BF834E;
+    --secondary-color-dark: #40372C;
+    --secondary-color-light: #8C704F;
+    --text-color-default: #231F20;
+    --text-color-dark: #26211F;
+    --text-color-light: #D9C091;
+}
+
+/* Home Page */
+
+.container-home {
+    background-color: var(--secondary-color-light);
+}
+
+h2 {
+    font-size: 50px;
+    font-weight: bold;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: var(--text-color-light);
+}
+
+/* Card */
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem
+}
+
+.card {
+    width: 20rem;
+}

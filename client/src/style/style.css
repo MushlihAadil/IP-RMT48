@@ -161,3 +161,14 @@
     color: var(--text-color-dark);
     text-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);;
 }
+
+.signIn-others {
+    position: absolute;
+    left: 70%;
+    top: 72%;
+}
+
+.signIn-others p {
+    color: var(--text-color-light);
+    text-align: center;
+}

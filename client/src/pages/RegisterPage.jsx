@@ -38,7 +38,7 @@ export const RegisterPage = () => {
         console.log(err);
         Swal.fire({
             title: "Register Failed!",
-            text: err.response,
+            text: err.response.data.message,
             icon: "error",
             confirmButtonText: "Ok"
         });

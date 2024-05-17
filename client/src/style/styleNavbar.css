@@ -1,0 +1,37 @@
+:root {
+    --primary-color: #BF834E;
+    --secondary-color-dark: #40372C;
+    --secondary-color-light: #8C704F;
+    --text-color-default: #231F20;
+    --text-color-dark: #26211F;
+    --text-color-light: #D9C091;
+}
+
+.navbar-all {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+}
+
+.navbar-nav {
+    display: flex;
+    gap: 3rem;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.btn {
+    height: 50px;
+    width: 100px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: red;
+    transition-duration: 0.4s;
+}
+
+.btn:hover {
+    background-color: red;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
