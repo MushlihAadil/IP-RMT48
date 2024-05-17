@@ -18,7 +18,7 @@ export const RegisterPage = () => {
       try {
         await axios({
             method: "POST",
-            url: "http://localhost:3000" + `/register`,
+            url: "https://harrypotterserver.mushlihaadil.my.id" + `/register`,
             data: {
                 username,
                 email,
