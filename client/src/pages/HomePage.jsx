@@ -8,7 +8,7 @@ export const HomePage = () => {
 
     const fetchBooks = async () => {
         try {
-            const { data } = await axios.get("http://localhost:3000/books", {
+            const { data } = await axios.get("https://harrypotterserver.mushlihaadil.my.id/books", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 }

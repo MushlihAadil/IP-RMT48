@@ -15,7 +15,7 @@ export const LoginPage = () => {
         try {
             let {data } = await axios({
                 method: "POST",
-                url: "http://localhost:3000" + `/login`,
+                url: "https://harrypotterserver.mushlihaadil.my.id" + `/login`,
                 data: {
                     email: email,
                     password: password,
@@ -46,7 +46,7 @@ export const LoginPage = () => {
         try {
         const { data } = await axios({
             method: "POST",
-            url: "http://localhost:3000" + `/google-login`,
+            url: "https://harrypotterserver.mushlihaadil.my.id" + `/google-login`,
             headers: {
             google_token: response.credential,
             },
