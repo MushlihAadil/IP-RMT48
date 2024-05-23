@@ -8,15 +8,15 @@
 
 4. Bikin komponen tambahan 
     - mkdir Controllers Routers
-	- touch app.js .gitignore ./Controllers/MainController.js ./Controllers/UserController.js ./Routers/index.js
+	- touch app.js .gitignore ./Controllers/controller.js ./Routers/index.js
 	- .gitignore (node_modules dan .env)
 
 5. npx sequelize init (setup database) --> npx sequelize db:create (bikin database)
 
 6. bikin migration (yang ada foreignKey di create dulu (paling atas))
-    - npx sequelize model:create --name User --attributes email:string,password:string
-    - npx sequelize model:create --name Hero --attributes name:string,type:string,imageUrl:string
-    - npx sequelize model:create --name Favourite --attributes heroId:integer,userId:integer,role:string,power:integer
+    - npx sequelize model:create --name Article --attributes title:string,content:text,imgUrl:string,createdAt:date,updatedAt:date,categoryId:integer,authorId:integer
+    - npx sequelize model:create --name User --attributes username:string,email:string,password:string,role:string,phoneNumber:string,address:string
+    - npx sequelize model:create --name Category --attributes name:string
     - npx sequelize db:migrate (jalankan migration)
 
 7. bikin seed (jika dibutuhkan)
