@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== "production") {
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000;
 
 // Body Parser
 app.use(express.json());
@@ -24,8 +24,8 @@ app.get('/', (req, res) => {
 // Error Handler
 app.use(require('./middleware/errorHandlers'));
 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Example app listening on port ${PORT}`);
+// });
 
-// module.exports = app;
+module.exports = app;
