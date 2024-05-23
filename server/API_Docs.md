@@ -10,7 +10,7 @@ Harry Potter Website API DOCS is an application to show you the Harry Potter's w
 List of available endpoints:
 
 ### User :
-- `POST /register`
+- `POST /registe`
 - `POST /login`
 - `PATCH /profile-picture`
 

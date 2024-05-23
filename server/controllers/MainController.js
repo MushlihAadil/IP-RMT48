@@ -45,26 +45,6 @@ class MainController {
         }
     }
 
-    static async fetchFavouriteById(req, res, next) {
-        try {
-            const { id } = req.params;
-            const favourites = await Favourite.findOne({
-                where: {
-                    id: id,
-                },
-                include: {
-                    model: Book, attributes: {
-                      exclude: ["createdAt", "updatedAt"]
-                    }
-                  }
-            });
-
-            res.status(200).json(favourites);
-        } catch (err) {
-            next(err);
-        }
-    }
-
     static async addFavourite(req, res, next) {
         try {
             let { bookId } = req.params;

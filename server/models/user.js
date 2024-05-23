@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         through: models.Favourite,
         foreignKey: 'userId',
         otherKey: 'bookId'
-      });
+      })
     }
   }
   User.init({
