@@ -98,11 +98,11 @@ class MainController {
 
     static async updateFavourite(req, res, next) {
         try {
-            const { id } = req.params;
+            const { bookId } = req.params;
             const { quantity } = req.body;
             let favourite = await Favourite.findOne({
                 where: {
-                    id: id
+                    id: bookId
                 }
             });
             if (!favourite) throw { name : 'FavouriteNotFound'}
@@ -113,7 +113,7 @@ class MainController {
                 totalPrice: quantity*book.price
             })
 
-            res.status(200).json({ message: `Favourite with id ${id} has been Updated` });
+            res.status(200).json({ message: `Favourite with id ${bookId} has been Updated` });
         } catch (err) {
             next(err);
         }
@@ -121,16 +121,16 @@ class MainController {
 
     static async deleteFavourite(req, res, next) {
         try {
-            const { id } = req.params;
+            const { bookId } = req.params;
             let favourite = await Favourite.findOne({
                 where: {
-                    id: id
+                    id: bookId
                 }
             });
             if (!favourite) throw { name : 'FavouriteNotFound'}
 
             await favourite.destroy();
-            res.status(200).json({ message: `Favourite with id ${id} has been Deleted` });
+            res.status(200).json({ message: `Favourite with id ${bookId} has been Deleted` });
         } catch (err) {
             next(err);
         }
