@@ -1,4 +1,4 @@
-const { Model } = require('sequelize');
+const { Model, where } = require('sequelize');
 const { User, Book, Favourite } = require('../models');
 
 class MainController {
@@ -106,8 +106,8 @@ class MainController {
                 }
             });
             if (!favourite) throw { name : 'FavouriteNotFound'}
+            let book = await Book.findByPk(bookId);
 
-            let book = await Book.findByPk(favourite.bookId);
             await favourite.update({
                 quantity: quantity,
                 totalPrice: quantity*book.price
@@ -129,7 +129,11 @@ class MainController {
             });
             if (!favourite) throw { name : 'FavouriteNotFound'}
 
-            await favourite.destroy();
+            await favourite.destroy({
+                where: {
+                    id: bookId
+                }
+            });
             res.status(200).json({ message: `Favourite with id ${bookId} has been Deleted` });
         } catch (err) {
             next(err);
