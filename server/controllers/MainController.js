@@ -48,8 +48,9 @@ class MainController {
     static async fetchFavouriteById(req, res, next) {
         try {
             const { id } = req.params;
-            const favourites = await Favourite.findOne({
+            const favourite = await Favourite.findOne({
                 where: {
+                    userId: req.user.id,
                     id: id,
                 },
                 include: {
@@ -59,7 +60,7 @@ class MainController {
                   }
             });
 
-            res.status(200).json(favourites);
+            res.status(200).json(favourite);
         } catch (err) {
             next(err);
         }
@@ -70,16 +71,6 @@ class MainController {
             let { bookId } = req.params;
             let book = await Book.findByPk(bookId);
             if (!book) throw { name : 'BookNotFound'}
-            
-            let findFavourite = await Favourite.findOne({
-                where : {
-                    bookId: bookId,
-                }
-            })
-
-            if (findFavourite !== null) {
-                throw { name : 'AlreadyFavourite'}
-            }
 
             const { price } = book;
             let quantity = 1;
@@ -106,7 +97,8 @@ class MainController {
                 }
             });
             if (!favourite) throw { name : 'FavouriteNotFound'}
-            let book = await Book.findByPk(id);
+
+            let book = await Book.findByPk(favourite.bookId);
 
             await favourite.update({
                 quantity: quantity,

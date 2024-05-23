@@ -12,8 +12,6 @@ function errorHandler (err, req, res, next) {
         res.status(400).json({message: `Password must be at least 8 characters`});
     } else if (err.name === 'InvalidUserInput') {
         res.status(400).json({message: `Username, Email or Password is invalid`});
-    } else if (err.name === 'AlreadyFavourite') {
-        res.status(400).json({message: `This book is already in your favourites`});
     } else if (err.name === 'ImageIsRequired') {
         res.status(400).json({message: `Please upload an image file!`});
     } else if (err.name === 'InvalidToken') {
