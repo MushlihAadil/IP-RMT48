@@ -96,7 +96,7 @@ class MainController {
       });
       if (!favourite) throw { name: "FavouriteNotFound" };
 
-      let book = await Book.findByPk(favourite.bookId);
+      let book = await Book.findByPk(id);
 
       await favourite.update({
         quantity: quantity,
@@ -116,7 +116,6 @@ class MainController {
       const { id } = req.params;
       let favourite = await Favourite.findOne({
         where: {
-          userId: req.user.id,
           id: id,
         },
       });
