@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import "../style/style.css"
 import startImage from "../assets/login-register-image.png"
+import { ServerAPI } from '../utils/ServerAPI';
 
 export const LoginPage = () => {
     const navigate = useNavigate();
@@ -13,9 +14,9 @@ export const LoginPage = () => {
     const handleOnSubmit = async (event) => {
         event.preventDefault();
         try {
-            let {data } = await axios({
+            let {data } = await ServerAPI({
                 method: "POST",
-                url: "https://harrypotterserver.mushlihaadil.my.id" + `/login`,
+                url: `/login`,
                 data: {
                     email: email,
                     password: password,
@@ -44,9 +45,9 @@ export const LoginPage = () => {
     async function handleCredentialResponse(response) {
         // console.log("Encoded JWT ID token: " + response.credential);
         try {
-        const { data } = await axios({
+        const { data } = await ServerAPI({
             method: "POST",
-            url: "https://harrypotterserver.mushlihaadil.my.id" + `/google-login`,
+            url: `/google-login`,
             headers: {
             google_token: response.credential,
             },

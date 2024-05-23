@@ -2,8 +2,9 @@ import { createBrowserRouter, redirect, RouterProvider } from "react-router-dom"
 import { RegisterPage } from "./pages/RegisterPage";
 import { LoginPage } from "./pages/LoginPage";
 import { HomePage } from "./pages/HomePage";
-import { Navbar } from "./components/Navbar";
 import { MainLayout } from "./components/MainLayout";
+import { FavouritePage } from "./pages/FavouritePage";
+import { UpdateForm } from "./components/UpdateForm";
 
 const router = createBrowserRouter([
   
@@ -19,6 +20,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage/>
+      },
+      {
+        path: "/favourites",
+        element: <FavouritePage/>      
+      },
+      {
+        path: "/update/:id",
+        element: <UpdateForm/>      
       }
     ]
   },

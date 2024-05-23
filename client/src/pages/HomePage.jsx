@@ -2,13 +2,16 @@ import { useState, useEffect } from "react";
 import { BookCard } from "../components/BookCard";
 import axios from "axios";
 import "../style/styleHome.css"
+import { ServerAPI } from "../utils/ServerAPI";
 
 export const HomePage = () => {
     const [books, setBooks] = useState([]);
 
     const fetchBooks = async () => {
         try {
-            const { data } = await axios.get("https://harrypotterserver.mushlihaadil.my.id/books", {
+            const { data } = await ServerAPI({
+                method: "GET",
+                url: "/books",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 }

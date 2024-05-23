@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2"
 import "../style/style.css"
 import startImage from "../assets/login-register-image.png"
+import { ServerAPI } from "../utils/ServerAPI";
 
 export const RegisterPage = () => {
     const navigate = useNavigate();
@@ -16,9 +17,9 @@ export const RegisterPage = () => {
       event.preventDefault();
       console.log({ username, email, password, phoneNumber });
       try {
-        await axios({
+        await ServerAPI({
             method: "POST",
-            url: "https://harrypotterserver.mushlihaadil.my.id" + `/register`,
+            url: `/register`,
             data: {
                 username,
                 email,
