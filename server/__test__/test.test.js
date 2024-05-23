@@ -27,10 +27,11 @@ beforeAll(async () => {
         });
         await queryInterface.bulkInsert('Users', user);
 
-        let aadil = await User.findOne({ where: { email: 'aadil@mail.com' } });
+        let aadil = await User.findOne({ where: { username: 'aadil' } });
         userTesting = await User.create({
+            username: "testing2",
             email: "testing2@mail.com",
-            password:  "testingtesting2"
+            password:  "testingtesting2",
         });
 
         aadilToken = createToken({
@@ -103,9 +104,27 @@ describe('TESTING ALL', () => {
 
                     expect(status).toBe(201);
                     expect(body).toMatchObject({
+                        username: expect.any(String),
                         email: expect.any(String),
                         role: expect.any(String),
                     });
+                });
+            });
+
+            describe('Failed Register Username Bad Request', () => {
+                test('Should return status 400', async () => {
+                    const { body, status } = await request(app)
+                    .post('/register')
+                    .send({
+                        username: "",
+                        email: "testing@mail.com",
+                        password:  "testingtesting",
+                        phoneNumber : "111-111-111",
+                    });
+
+                    expect(status).toBe(400);
+                    expect(body).toBeInstanceOf(Object);
+                    expect(body).toHaveProperty('message', `Username is required`);
                 });
             });
 
