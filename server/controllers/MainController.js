@@ -1,5 +1,5 @@
-const { Model, where } = require('sequelize');
-const { User, Book, Favourite } = require('../models');
+const { Model, where } = require("sequelize");
+const { User, Book, Favourite } = require("../models");
 
 class MainController {
   // Books Controller
@@ -46,17 +46,23 @@ class MainController {
     }
   }
 
-  static async fetchFavouriteById(req, res, next) {
+  static async fetchFavbyId(req, res, next) {
     try {
       const { id } = req.params;
-      const favourite = await Favourite.findByPk(id, {
-        include: {
-          model: Book,
-          attributes: {
-            exclude: ["createdAt", "updatedAt"],
-          },
+
+      const favourite = await Favourite.findOne(
+        {
+          where: {},
         },
-      });
+        {
+          include: {
+            model: Book,
+            attributes: {
+              exclude: ["createdAt", "updatedAt"],
+            },
+          },
+        }
+      );
 
       res.status(200).json(favourite);
     } catch (err) {
@@ -70,13 +76,19 @@ class MainController {
       let book = await Book.findByPk(bookId);
       if (!book) throw { name: "BookNotFound" };
 
-      const { price } = book;
-      let quantity = 1;
+      let findFavourite = await Favourite.findOne({
+        where: {
+          bookId: bookId,
+        },
+      });
+
+      if (findFavourite !== null) {
+        throw { name: "AlreadyFavourite" };
+      }
+
       let favourite = await Favourite.create({
         userId: req.user.id,
         bookId: bookId,
-        quantity: quantity,
-        totalPrice: quantity * price,
       });
 
       res.status(201).json(favourite);
@@ -96,8 +108,7 @@ class MainController {
       });
       if (!favourite) throw { name: "FavouriteNotFound" };
 
-      let book = await Book.findByPk(id);
-
+      let book = await Book.findByPk(favourite.bookId);
       await favourite.update({
         quantity: quantity,
         totalPrice: quantity * book.price,
@@ -122,7 +133,6 @@ class MainController {
       if (!favourite) throw { name: "FavouriteNotFound" };
 
       await favourite.destroy();
-
       res
         .status(200)
         .json({ message: `Favourite with id ${id} has been Deleted` });

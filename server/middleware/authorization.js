@@ -3,11 +3,7 @@ const { Favourite } = require('../models');
 const authorization = async (req, res, next) => {
     try {
         const {id} = req.params;
-        let favourite = await Favourite.findOne({
-            where: {
-                id: id
-            }
-        });
+        let favourite = await Favourite.findByPk(id);
         if(!favourite) throw { name : 'FavouriteNotFound' };
 
         if (favourite.userId == req.user.id) {
