@@ -7,8 +7,8 @@ const router = express.Router();
 router.get('/', authentication, MainController.fetchFavourites);
 router.get('/:id', authentication, MainController.fetchFavbyId)
 router.post('/:bookId', authentication, MainController.addFavourite);
-router.put('/:id', authentication, MainController.updateFavourite);
-router.delete('/:bookId', authentication, authorization, MainController.deleteFavourite);
+router.put('/:id', authentication, authorization, MainController.updateFavourite);
+router.delete('/:id', authentication, authorization, MainController.deleteFavourite);
 
 
 module.exports = router;

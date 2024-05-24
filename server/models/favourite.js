@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Favourite extends Model {
     /**
@@ -12,40 +10,49 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Favourite.belongsTo(models.User, {
-        foreignKey: 'userId'
+        foreignKey: "userId",
       });
       Favourite.belongsTo(models.Book, {
-        foreignKey: 'bookId'
+        foreignKey: "bookId",
       });
     }
   }
-  Favourite.init({
-    userId: {
-      type:DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notNull: { args: true, msg: 'UserId is required' },
-        notEmpty: { args: true, msg: 'UserId is required' }
-      }
+  Favourite.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: { args: true, msg: "UserId is required" },
+          notEmpty: { args: true, msg: "UserId is required" },
+        },
+      },
+      bookId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: { args: true, msg: "BookId is required" },
+          notEmpty: { args: true, msg: "BookId is required" },
+        },
+      },
+      quantity: {
+        type: DataTypes.INTEGER,
+        defaultValue: 1,
+      },
+      totalPrice: {
+        type: DataTypes.INTEGER,
+      },
     },
-    bookId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notNull: { args: true, msg: 'BookId is required' },
-        notEmpty: { args: true, msg: 'BookId is required' }
-      }
-    },
-    quantity: {
-      type: DataTypes.INTEGER,
-      defaultValue: 1
-    },
-    totalPrice: {
-      type: DataTypes.INTEGER
+    {
+      sequelize,
+      modelName: "Favourite",
     }
-  }, {
-    sequelize,
-    modelName: 'Favourite',
-  });
+  );
   return Favourite;
 };
