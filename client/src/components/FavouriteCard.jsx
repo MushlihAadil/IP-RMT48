@@ -5,10 +5,39 @@ import { ServerAPI } from "../utils/ServerAPI";
 
 export const FavouriteCard = ({ favourite }) => {
   const navigate = useNavigate();
-  
+
+  const handleOnBuy = async () => {
+    try {
+      window.snap.embed("YOUR_SNAP_TOKEN", {
+        embedId: "snap-container",
+        onSuccess: function (result) {
+          /* You may add your own implementation here */
+          alert("payment success!");
+          console.log(result);
+        },
+        onPending: function (result) {
+          /* You may add your own implementation here */
+          alert("wating your payment!");
+          console.log(result);
+        },
+        onError: function (result) {
+          /* You may add your own implementation here */
+          alert("payment failed!");
+          console.log(result);
+        },
+        onClose: function () {
+          /* You may add your own implementation here */
+          alert("you closed the popup without finishing the payment");
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleOnDelete = async () => {
     try {
-      console.log(favourite)
+      console.log(favourite);
       const { data } = await ServerAPI({
         method: "DELETE",
         url: `/favourites/${favourite.id}`,
@@ -23,7 +52,7 @@ export const FavouriteCard = ({ favourite }) => {
         icon: "success",
         confirmButtonText: "Ok",
       });
-      
+
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -52,7 +81,9 @@ export const FavouriteCard = ({ favourite }) => {
             Book Price : Rp. {favourite.totalPrice}{" "}
           </h5>
           <div className="d-flex gap-3 justify-content-center">
-            <button className="btn-buy">Buy</button>
+            <button className="btn-buy" onClick={handleOnBuy}>
+              Buy
+            </button>
             <Link
               className="btn btn-update"
               to={`/update/${favourite.Book.id}`}
@@ -60,7 +91,11 @@ export const FavouriteCard = ({ favourite }) => {
             >
               Update
             </Link>
-            <button className="btn-delete" onClick={handleOnDelete} id={favourite.Book.id}>
+            <button
+              className="btn-delete"
+              onClick={handleOnDelete}
+              id={favourite.Book.id}
+            >
               Delete
             </button>
           </div>
