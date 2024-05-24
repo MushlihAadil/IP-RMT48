@@ -1,31 +1,18 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { BookCard } from "../components/BookCard";
-import axios from "axios";
+import { fetchBooks } from "../store/bookSlice";
 import "../style/styleHome.css"
-import { ServerAPI } from "../utils/ServerAPI";
 
 export const HomePage = () => {
-    const [books, setBooks] = useState([]);
-
-    const fetchBooks = async () => {
-        try {
-            const { data } = await ServerAPI({
-                method: "GET",
-                url: "/books",
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-                }
-            })
-
-            setBooks(data);
-        } catch (err) {
-            console.log(err);
-        }
-    }
+    const books = useSelector((state) => {
+      return state.books
+    });
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        fetchBooks();
-    }, [])
+        dispatch(fetchBooks());
+    }, []);
 
   return (
     <>

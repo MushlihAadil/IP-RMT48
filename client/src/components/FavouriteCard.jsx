@@ -5,25 +5,26 @@ import { ServerAPI } from "../utils/ServerAPI";
 
 export const FavouriteCard = ({ favourite }) => {
   const navigate = useNavigate();
-  const { id } = useParams();
-  const handleOnClickDelete = async () => {
+  
+  const handleOnDelete = async () => {
     try {
-      console.log(id)
+      console.log(favourite)
       const { data } = await ServerAPI({
         method: "DELETE",
-        url: `/favourites/${id}`,
+        url: `/favourites/${favourite.id}`,
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
+
       Swal.fire({
-        title: "Success!",
-        text: "Success Delete!",
+        title: "Delete Favourite Success!",
+        text: "Favourite Successfully Deleted!",
         icon: "success",
         confirmButtonText: "Ok",
       });
+      
       navigate("/");
-
     } catch (err) {
       console.log(err);
       Swal.fire({
@@ -55,15 +56,11 @@ export const FavouriteCard = ({ favourite }) => {
             <Link
               className="btn btn-update"
               to={`/update/${favourite.Book.id}`}
+              id={favourite.Book.id}
             >
               Update
             </Link>
-            <button
-              className="btn-delete"
-              onClick={() => {
-                handleOnClickDelete(favourite.bookId);
-              }}
-            >
+            <button className="btn-delete" onClick={handleOnDelete} id={favourite.Book.id}>
               Delete
             </button>
           </div>

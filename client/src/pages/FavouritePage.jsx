@@ -14,7 +14,7 @@ export const FavouritePage = () => {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
-
+      console.log(data);
       setFavourite(data);
     } catch (err) {
       console.log(err);
