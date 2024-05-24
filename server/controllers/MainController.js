@@ -127,15 +127,13 @@ class MainController {
       const { bookId } = req.params;
       let favourite = await Favourite.findOne({
         where : {
-          id : bookId,
+          bookId : bookId,
         }
       });
       if (!favourite) throw { name: "FavouriteNotFound" };
 
       await favourite.destroy();
-      res
-        .status(200)
-        .json({ message: `Favourite with id ${id} has been Deleted` });
+      res.status(200).json({ message: `Favourite with id ${id} has been Deleted` });
     } catch (err) {
       next(err);
     }
