@@ -124,10 +124,10 @@ class MainController {
 
   static async deleteFavourite(req, res, next) {
     try {
-      const { id } = req.params;
+      const { bookId } = req.params;
       let favourite = await Favourite.findOne({
         where : {
-          bookId : id,
+          bookId : bookId,
         }
       });
       if (!favourite) throw { name: "FavouriteNotFound" };
