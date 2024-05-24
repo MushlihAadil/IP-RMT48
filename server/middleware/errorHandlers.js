@@ -16,6 +16,8 @@ function errorHandler (err, req, res, next) {
         res.status(400).json({message: `This book is already in your favourites`});
     } else if (err.name === 'ImageIsRequired') {
         res.status(400).json({message: `Please upload an image file!`});
+    } else if (err.name === 'UserAlreadySubscribed') {
+        res.status(400).json({message: `User is already subcribed!`});
     } else if (err.name === 'InvalidToken') {
         res.status(401).json({message: `Unauthenticated User`});
     } else if (err.name === 'Unauthorized') {

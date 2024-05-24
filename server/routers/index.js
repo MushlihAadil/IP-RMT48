@@ -15,6 +15,7 @@ router.post('/register', UserController.register);
 router.post('/login', UserController.login);
 router.patch('/profile-picture', authentication, upload.single('profile_picture'), UserController.patchUserProfilePicture)
 router.post('/google-login', UserController.googleLogin);
+router.post('/generate-midtrans-token', authentication, UserController.generateMidtransToken);
 
 // Main Router
 router.use('/books', require('./bookRouters'));

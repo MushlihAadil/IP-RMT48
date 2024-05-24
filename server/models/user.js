@@ -50,13 +50,14 @@ module.exports = (sequelize, DataTypes) => {
     profilePicture: {
       type: DataTypes.STRING,
       defaultValue: 'https://res.cloudinary.com/d3711111/image/upload/v1621069111/default-profile_p1j42o.png'
-    }
+    },
   }, {
     sequelize,
     modelName: 'User',
     hooks : {
       beforeCreate(user) {
         user.password = hashPassword(user.password);
+        user.isSubscribed = false;
       }
     }
   });
