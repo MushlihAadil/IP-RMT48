@@ -126,9 +126,9 @@ class MainController {
     try {
       const { id } = req.params;
       let favourite = await Favourite.findOne({
-        where: {
-          id: id,
-        },
+        where : {
+          bookId : id,
+        }
       });
       if (!favourite) throw { name: "FavouriteNotFound" };
 
